@@ -24,6 +24,22 @@ let profileSchema = new mongoose.Schema(
 			type: String,
 			required: true,
 		},
+		links: [
+			{
+				title: {
+					type: String,
+					required: true,
+				},
+				url: {
+					type: String,
+					required: true,
+				},
+				isHidden: {
+					type: Boolean,
+					default: false,
+				},
+			},
+		],
 	},
 	{ timestamps: true }
 );

@@ -24,13 +24,13 @@ isAuthenticated = async (req, res, next) => {
 	// Get token from header and verify it
 	const token = split[1];
 	try {
-		const roleCheckDecode = jsonwebtoken.decode(token);
 		let decodedCustomToken = await verifyToken(token);
+		console.log(decodedCustomToken);
 		res.locals = {
 			...res.locals,
-			userid: decodedCustomToken._id,
-			email: decodedCustomToken.email,
-			username: decodedCustomToken.username,
+			userid: decodedCustomToken.user._id,
+			email: decodedCustomToken.user.email,
+			username: decodedCustomToken.user.username,
 		};
 		return next();
 	} catch (error) {

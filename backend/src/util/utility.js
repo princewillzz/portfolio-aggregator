@@ -22,6 +22,9 @@ const handleMongooseValidationError = (error, res, errorStatus) => {
 	return res.status(errorStatus || 400).json({ errors: customError });
 };
 
+const isNull = (_it) => _it === null || _it === undefined || _it === "";
+
 module.exports = {
 	handleMongooseValidationError,
+	isNull,
 };

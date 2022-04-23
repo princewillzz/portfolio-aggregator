@@ -10,24 +10,35 @@ const authAPI = express.Router();
 authAPI.post("/login", async (req, res) => {
 	const { username, password } = req.body;
 
-	const profile = await getProfileByUserName(username);
-	console.log(profile);
+	try {
+		const profile = await getProfileByUserName(username);
+		if (!profile) {
+			return res
+				.status(400)
+				.json({ success: false, message: "Bad Credentials!!" });
+		}
 
-	const isVerified = await verifyPassword(password, profile.password);
+		const isVerified = await verifyPassword(password, profile.password);
 
-	if (!isVerified) {
-		return res.status(401).json({ error: "Wrong Password!!" });
+		if (!isVerified) {
+			return res.status(401).json({ error: "Wrong Password!!" });
+		}
+
+		let token = generateToken(profile);
+
+		res.send({
+			data: {
+				token: token,
+				user: profile,
+			},
+			message: "Login Success!!",
+		});
+	} catch (error) {
+		res.status(400).json({
+			success: false,
+			message: "Invalid Request. Please try again!!",
+		});
 	}
-
-	let token = generateToken(profile);
-
-	res.send({
-		data: {
-			token: token,
-			user: profile,
-		},
-		message: "Login Success!!",
-	});
 });
 
 authAPI.post("/register", async (req, res) => {
