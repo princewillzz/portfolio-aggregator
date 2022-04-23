@@ -1,0 +1,7 @@
+node_modules
+package-lock.json
+logs
+public/temp/*.jpg
+public/temp/*.jpeg
+public/temp/*.png
+*.rdb
