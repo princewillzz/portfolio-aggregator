@@ -39,7 +39,22 @@ isAuthenticated = async (req, res, next) => {
 	}
 };
 
+const generateToken = (profile) => {
+	return jsonwebtoken.sign(
+		{
+			user: {
+				_id: profile._id,
+				username: profile.username,
+				email: profile.email,
+			},
+		},
+		JWTSignnature,
+		{ expiresIn: 1000 * 60 * 60 * 24 }
+	);
+};
+
 module.exports = {
 	verifyPassword,
 	isAuthenticated,
+	generateToken,
 };
