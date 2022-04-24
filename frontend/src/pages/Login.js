@@ -1,14 +1,11 @@
-import React, { useEffect } from "react";
-
-import { Form, Input, Button, Checkbox } from "antd";
-import { useAuth } from "../../contexts/auth/useAuth";
+import { Button, Form, Input } from "antd";
+import React from "react";
+import { useAuth } from "../contexts/auth/useAuth";
 
 export const Login = () => {
 	let auth = useAuth();
 
 	const onFinish = (values) => {
-		console.log("Success:", values);
-
 		auth.signin(values, () => {
 			setTimeout(() => {
 				window.location.href = "/admin";

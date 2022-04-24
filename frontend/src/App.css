@@ -29,6 +29,14 @@
 	color: #61dafb;
 }
 
+.ant-layout-header .logo span {
+	color: #fff;
+}
+.ant-layout-header {
+	display: flex;
+	justify-content: space-between;
+}
+
 @keyframes App-logo-spin {
 	from {
 		transform: rotate(0deg);
@@ -36,4 +44,34 @@
 	to {
 		transform: rotate(360deg);
 	}
+}
+
+@media screen and (max-width: 600px) {
+	.ant-layout-content {
+		padding: 0px !important;
+	}
+	.dashboard-layout-content {
+		background: #fff;
+	}
+}
+
+@media screen and (min-width: 600px) {
+	.dashboard-layout-content {
+		min-height: 280px;
+		padding: 24px;
+		background: #fff;
+	}
+}
+
+.links-container {
+	width: min(70vw, 500px);
+	margin-inline: auto;
+}
+
+.ant-list-item {
+	box-shadow: 0 2px 6px rgb(0 0 0 / 0.2);
+}
+
+.ant-list-item:hover {
+	box-shadow: 0 5px 15px rgb(0 0 0 / 0.2);
 }

@@ -23,8 +23,6 @@ export const useProvideAuth = () => {
 			if (user) {
 				setIsUserLoggedIn(true);
 			}
-		} else {
-			setUser(null);
 		}
 
 		const timeout = setTimeout(() => {
@@ -44,6 +42,7 @@ export const useProvideAuth = () => {
 	};
 
 	const signout = (cb) => {
+		localStorage.removeItem("token");
 		setIsUserLoggedIn(false);
 		if (typeof cb == "function") cb();
 	};

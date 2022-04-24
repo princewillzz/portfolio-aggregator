@@ -2,8 +2,8 @@ import { Spin } from "antd";
 import "antd/dist/antd.css";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import "./App.css";
-import { Login } from "./components/auth/Login";
-import { Dashboard } from "./components/dashboard/Dashboard";
+import { Login } from "./pages/Login";
+import { Dashboard } from "./pages/Dashboard";
 import { PrivateRoute } from "./components/protected-route/PrivateRoute";
 import { useAuth } from "./contexts/auth/useAuth";
 function App() {
