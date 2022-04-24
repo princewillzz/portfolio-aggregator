@@ -6,6 +6,7 @@ import { Login } from "./pages/Login";
 import { Dashboard } from "./pages/Dashboard";
 import { PrivateRoute } from "./components/protected-route/PrivateRoute";
 import { useAuth } from "./contexts/auth/useAuth";
+import { PublicPortfolio } from "./pages/PublicPortfolio";
 function App() {
 	const { isLoading } = useAuth();
 
@@ -30,6 +31,8 @@ function App() {
 						</PrivateRoute>
 					}
 				/>
+
+				<Route path="/:username" element={<PublicPortfolio />} />
 
 				<Route path="/" element={<Navigate replace to={"/admin"} />} />
 			</Routes>

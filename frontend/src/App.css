@@ -1,7 +1,8 @@
 .login-wrapper {
 	margin: 100px;
 }
-.login-wrapper h1 {
+.login-wrapper h1,
+.login-wrapper .login-toggle-btn {
 	text-align: center;
 }
 
@@ -74,4 +75,23 @@
 
 .ant-list-item:hover {
 	box-shadow: 0 5px 15px rgb(0 0 0 / 0.2);
+}
+
+.public-profile-page {
+	background: #ececec;
+	padding: 24px;
+	min-height: 100vh;
+}
+.public-profile-page .info-container {
+	max-width: min(560px, 90vw);
+
+	margin-block: 1rem;
+	margin-inline: auto;
+}
+
+.public-profile-page .site-card-wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1rem;
 }

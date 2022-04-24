@@ -19,7 +19,7 @@ export const Dashboard = () => {
 				</div>
 			</Content>
 			<Footer style={{ textAlign: "center", bottom: 0 }}>
-				Ant Design ©2018 Created by Ant UED
+				Created By Harsh Tiwari and Shristi Sagar
 			</Footer>
 		</Layout>
 	);
