@@ -1,4 +1,4 @@
-import { Alert, Card, Col, Row, Typography } from "antd";
+import { Alert, Card, Typography } from "antd";
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { usePublicProfileInfo } from "../hooks/usePublicProfileInfo";

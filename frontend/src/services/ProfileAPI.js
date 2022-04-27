@@ -24,3 +24,8 @@ export const getPublicProfileInfo = async (username) => {
 	const URL = `/${username}`;
 	return await axiosInstance.get(URL);
 };
+
+export const updateLinkAPI = async (payload) => {
+	const URL = "/admin/link";
+	return await axiosInstance.put(URL, payload);
+};

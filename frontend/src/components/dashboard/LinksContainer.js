@@ -1,24 +1,11 @@
-import {
-	DeleteOutlined,
-	LikeOutlined,
-	MessageOutlined,
-	StarOutlined,
-} from "@ant-design/icons";
-import { Avatar, Divider, List, message, Space, Typography } from "antd";
-import React from "react";
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import { Button, Divider, Input, List, message, Space, Typography } from "antd";
+import React, { useState } from "react";
 import { useProfileInfo } from "../../hooks/useProfileInfo";
 import LinksInputFormContainer from "./LinksInputFormContainer";
 
 export const LinksContainer = () => {
-	const listData = [];
-	for (let i = 0; i < 3; i++) {
-		listData.push({
-			url: "https://ant.design",
-			title: `ant design part ${i}`,
-		});
-	}
-
-	const { profile, addNewLink, deleteLink } = useProfileInfo();
+	const { profile, addNewLink, deleteLink, updateLink } = useProfileInfo();
 	const handleAddNewLink = async (values) => {
 		if (!values.title || !values.url) {
 			message.error("Invalid Data!!");
@@ -33,6 +20,23 @@ export const LinksContainer = () => {
 	const handleDeleteLink = (linkId) => {
 		deleteLink(linkId);
 	};
+
+	const [isUpdating, setIsUpdating] = useState(false);
+	const toggleEditing = (link) => {
+		if (isUpdating) {
+			console.log("Updated link: ", editLink);
+			handleUpdateLink(editLink);
+		} else {
+			setEditLink(link);
+		}
+		setIsUpdating(!isUpdating);
+	};
+
+	const handleUpdateLink = async (link) => {
+		updateLink(link);
+	};
+
+	const [editLink, setEditLink] = useState(null);
 
 	return (
 		<>
@@ -52,27 +56,71 @@ export const LinksContainer = () => {
 								key={item.title}
 								actions={[
 									<Space>
-										<DeleteOutlined
-											onClick={() =>
-												handleDeleteLink(item._id)
-											}
-										/>
+										{!isUpdating && (
+											<DeleteOutlined
+												onClick={() =>
+													handleDeleteLink(item._id)
+												}
+											/>
+										)}
+										{!isUpdating ? (
+											<EditOutlined
+												onClick={() =>
+													toggleEditing(item)
+												}
+											/>
+										) : (
+											<Button
+												type="primary"
+												onClick={toggleEditing}
+											>
+												Save{" "}
+											</Button>
+										)}
 									</Space>,
 								]}
 							>
 								<List.Item.Meta
-									title={<a href={item.url}>{item.title}</a>}
+									title={
+										isUpdating ? (
+											<Input
+												placeholder="Title"
+												defaultValue={item.title}
+												onChange={(e) => {
+													setEditLink({
+														...editLink,
+														title: e.target.value,
+													});
+												}}
+											/>
+										) : (
+											<a href={item.url}>{item.title}</a>
+										)
+									}
 								/>
 
-								<Typography>
-									<a
-										href={item.url}
-										target="_blank"
-										rel="noreferrer"
-									>
-										{item.url}
-									</a>
-								</Typography>
+								{isUpdating ? (
+									<Input
+										placeholder="URL"
+										defaultValue={item.url}
+										onChange={(e) => {
+											setEditLink({
+												...editLink,
+												url: e.target.value,
+											});
+										}}
+									/>
+								) : (
+									<Typography>
+										<a
+											href={item.url}
+											target="_blank"
+											rel="noreferrer"
+										>
+											{item.url}
+										</a>
+									</Typography>
+								)}
 							</List.Item>
 						)}
 					/>

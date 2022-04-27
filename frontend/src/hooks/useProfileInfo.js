@@ -1,10 +1,10 @@
 import { message } from "antd";
-import React, { useEffect, useState } from "react";
-import { axiosInstance } from "../api/axios-config";
+import { useEffect, useState } from "react";
 import {
 	addNewLinkAPI,
 	deleteLinkAPI,
 	getCurrentAdminProfileInfo,
+	updateLinkAPI,
 } from "../services/ProfileAPI";
 
 export const useProfileInfo = () => {
@@ -62,9 +62,25 @@ export const useProfileInfo = () => {
 		}
 	};
 
+	const updateLink = async (payload) => {
+		try {
+			const res = await updateLinkAPI(payload);
+			if (res.status === 200) {
+				message.success("Successfully updated Link!!");
+				const updatedProfile = res.data.data.profile;
+				setProfile({ ...profile, links: updatedProfile.links });
+			} else {
+				message.warn(res.data.message);
+			}
+		} catch (error) {
+			message.error("Something went wrong... Please try again!!");
+		}
+	};
+
 	return {
 		profile,
 		addNewLink,
 		deleteLink,
+		updateLink,
 	};
 };

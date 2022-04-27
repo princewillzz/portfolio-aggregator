@@ -1,4 +1,3 @@
-import { message } from "antd";
 import { useState } from "react";
 import { getPublicProfileInfo } from "../services/ProfileAPI";
 
