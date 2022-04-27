@@ -42,15 +42,20 @@ authAPI.post("/login", async (req, res) => {
 });
 
 authAPI.post("/register", async (req, res) => {
-	const { username, password, email, phone } = req.body;
+	const { name, username, password, email, phone } = req.body;
 
 	try {
 		const oldProfile = await getProfileByUserName(username);
 		console.log(oldProfile);
 		if (oldProfile) {
-			throw new Error("Username Already Exists!!");
+			return res.status(200).json({
+				success: false,
+				error: true,
+				message: "Username Already Exists!!",
+			});
 		}
 		const profile = await Profile.create({
+			name,
 			username,
 			email,
 			phonenumber: phone,

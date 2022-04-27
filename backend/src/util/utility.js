@@ -24,7 +24,14 @@ const handleMongooseValidationError = (error, res, errorStatus) => {
 
 const isNull = (_it) => _it === null || _it === undefined || _it === "";
 
+function isValidURL(string) {
+	var res = string.match(
+		/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g
+	);
+	return res !== null;
+}
 module.exports = {
 	handleMongooseValidationError,
 	isNull,
+	isValidURL,
 };
