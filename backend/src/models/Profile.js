@@ -30,6 +30,9 @@ let profileSchema = new mongoose.Schema(
 					type: String,
 					required: true,
 				},
+				content: {
+					type: String,
+				},
 				url: {
 					type: String,
 					required: true,

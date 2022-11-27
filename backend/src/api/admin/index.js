@@ -24,7 +24,7 @@ AdminAPI.post("/link", async (req, res) => {
 		const { username } = res.locals;
 		let profile = await getProfileByUserName(username);
 
-		const { title, url } = req.body;
+		const { title, url, content } = req.body;
 
 		if (isNull(title) || isNull(url)) {
 			return res.status(200).json({
@@ -42,7 +42,7 @@ AdminAPI.post("/link", async (req, res) => {
 			});
 		}
 
-		const link = { title, url };
+		const link = { title, url, content };
 
 		if (isNull(profile.links)) {
 			profile = await Profile.findOneAndUpdate(
@@ -118,7 +118,7 @@ AdminAPI.delete("/link/:linkId", async (req, res) => {
 AdminAPI.put("/link", async (req, res) => {
 	try {
 		const { userid } = res.locals;
-		const { _id, title, url } = req.body;
+		const { _id, title, url, content } = req.body;
 
 		const profile = await Profile.findById(userid);
 
@@ -136,6 +136,9 @@ AdminAPI.put("/link", async (req, res) => {
 			}
 			if (url) {
 				_link.url = url;
+			}
+			if (content) {
+				_link.content = content;
 			}
 			return _link;
 		});

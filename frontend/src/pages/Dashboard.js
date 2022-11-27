@@ -19,7 +19,7 @@ export const Dashboard = () => {
 				</div>
 			</Content>
 			<Footer style={{ textAlign: "center", bottom: 0 }}>
-				Created By Harsh Tiwari and Shristi Sagar
+				Created By Jayesh, Animesh, Aman and Harsh
 			</Footer>
 		</Layout>
 	);

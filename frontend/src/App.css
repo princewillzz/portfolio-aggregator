@@ -65,8 +65,14 @@
 }
 
 .links-container {
-	width: min(70vw, 500px);
+	width: min(70vw, 1000px);
 	margin-inline: auto;
+}
+
+.links-list-container .ant-list-item {
+	display: flex;
+	gap: 1rem;
+	flex-direction: column;
 }
 
 .ant-list-item {

@@ -1,4 +1,6 @@
 import { Form, Input, Button, Checkbox } from "antd";
+const { TextArea } = Input;
+
 
 const LinksInputFormContainer = ({ handleAddNewLink }) => {
 	const onFinish = (values) => {
@@ -25,6 +27,7 @@ const LinksInputFormContainer = ({ handleAddNewLink }) => {
 			onFinish={onFinish}
 			onFinishFailed={onFinishFailed}
 			autoComplete="off"
+			layout="vertical"
 		>
 			<Form.Item
 				label="Title"
@@ -37,6 +40,13 @@ const LinksInputFormContainer = ({ handleAddNewLink }) => {
 				]}
 			>
 				<Input />
+			</Form.Item>
+
+			<Form.Item 
+				label="Content"
+				name="content"
+			>
+				<TextArea rows={12} />
 			</Form.Item>
 
 			<Form.Item
@@ -54,12 +64,11 @@ const LinksInputFormContainer = ({ handleAddNewLink }) => {
 
 			<Form.Item
 				wrapperCol={{
-					offset: 4,
 					span: 8,
 				}}
 			>
 				<Button type="primary" htmlType="submit">
-					Add Link
+					Add Blog
 				</Button>
 			</Form.Item>
 		</Form>
